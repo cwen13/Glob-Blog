@@ -18,3 +18,9 @@ User.hasMany(BlogPost, {
 BlogPost.belongsTo(User, {
   foreginnKey: "author"
 });
+
+module.exports = {
+  BlogPost,
+  User,
+  Comment
+};
