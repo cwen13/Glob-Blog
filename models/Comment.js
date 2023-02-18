@@ -15,10 +15,10 @@ Comment.init (
       type: DataTypes.STRING,
       allowNull:false
     },
-    post_id: {
+    blog_post_id: {
       type: DataTypes.INTEGER,
       refernces: {
-	model: "post",
+	model: "blogPost",
 	key: "id",
 	unique: true
       }
@@ -33,4 +33,4 @@ Comment.init (
   }
 );
 
-module.exports = Product;
+module.exports = Comment;
