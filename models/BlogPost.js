@@ -9,7 +9,7 @@ BlogPost.init(
       type: DataTypes.INTEGER,
       primaryKey:true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
@@ -28,7 +28,7 @@ BlogPost.init(
       defaultValue: DataTypes.NOW,
     },
     body: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     comment_id: {
