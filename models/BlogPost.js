@@ -15,7 +15,7 @@ BlogPost.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    author: {
+    author_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
@@ -30,14 +30,6 @@ BlogPost.init(
     body: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'comment',
-        key: 'id',
-      },
     },
   },
   {

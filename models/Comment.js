@@ -20,7 +20,16 @@ Comment.init (
       refernces: {
 	model: "blogPost",
 	key: "id",
-	unique: true
+	unique: false
+      }
+    },
+    comment_author_id:{
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      reference: {
+	model: "user",
+	key: "id",
+	unique: false
       }
     }
   },
