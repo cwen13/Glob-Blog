@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Comment, BlogPost, User } = require("../models");
-const {Op} = require("sequelize");
 const withAuth = require("../utils/auth");
 
 // get the home page
@@ -8,10 +7,11 @@ router.get('/',  async(req,res) => {
   try{
     const dbBlogPostData = await BlogPost.findAll({
       include: [
-	{ model: User,}
+	{ model: User,
+	  attributes: ["name"]
+	}
       ]
     });
-    console.log(dbBlogPostData);
     const blogPosts = dbBlogPostData.map((blogpost) =>
       blogpost.get({plain: true})
     );
@@ -19,7 +19,7 @@ router.get('/',  async(req,res) => {
       blogPosts
     });
   } catch (err) {
-    res.status(500).json({message:"Faild to laod"});
+    res.status(500).json(err);
   }
 });
 
