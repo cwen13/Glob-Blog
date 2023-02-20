@@ -6,17 +6,14 @@ const withAuth = require("../utils/auth");
 router.get('/',  async(req,res) => {
   try{
     const dbBlogPostData = await BlogPost.findAll({
-      include: [
-	{ model: User,
-	  attributes: ["name"]
-	}
-      ]
+      include: [{ model: User}]
     });
     const blogPosts = dbBlogPostData.map((blogpost) =>
       blogpost.get({plain: true})
     );
+    console.log(blogPosts);
     res.render("homepage",{
-      blogPosts
+       blogPosts
     });
   } catch (err) {
     res.status(500).json(err);

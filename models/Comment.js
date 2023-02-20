@@ -15,7 +15,7 @@ Comment.init (
       type: DataTypes.STRING,
       allowNull:false
     },
-    blog_post_id: {
+    blogpost_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       refernces: {
@@ -24,7 +24,7 @@ Comment.init (
 	unique: false
       }
     },
-    comment_author_id:{
+    user_id:{
       type: DataTypes.INTEGER,
       allowNull:false,
       reference: {

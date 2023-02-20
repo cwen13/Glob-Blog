@@ -2,9 +2,9 @@
 
 <!--set up a list for teh blog posts -->
 
-{#each blogPosts as |post|}}
-  <seciton class="card" style="width: 100%;">
-    <seciton class="card-body">
+{{#each blogPosts as |post|}}
+  <section class="card" style="width: 100%;">
+    <section class="card-body">
       <h3 class="card-title">{{title}}</h3>
       <h5 class="card-subtitle text-muted">
       {{author_id}} on {{format_date date_created}}
