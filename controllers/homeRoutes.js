@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Comment, BlogPost, User } = require("../models");
-const withAuth = require("../utils/auth");
+const { Comment, BlogPost, User } = require("./../models");
+const withAuth = require("./../utils/auth");
 
 // get the home page
 router.get('/',  async(req,res) => {
@@ -11,7 +11,7 @@ router.get('/',  async(req,res) => {
     const blogPosts = dbBlogPostData.map((blogpost) =>
       blogpost.get({plain: true})
     );
-    console.log(blogPosts);
+//    console.log(blogPosts);
     res.render("homepage",{
        blogPosts
     });
@@ -26,8 +26,18 @@ router.get("/profile", withAuth, async (req, res) => {
 });
 
 //get the blogpost
-router.get("/blogpost/:id", withAuth, async(req,res) => {
-
+router.get("/blogpost/:id",  async(req,res) => {
+  try{
+    const blogPostData = await BlogPost.findByPk(req.params.id, {
+      include: [{model: User}]
+    });
+    const blogPost = blogPostData.get({plain:true});
+    res.render("blogpost", {
+      blogPost
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }   
 });
 
 // get user information
