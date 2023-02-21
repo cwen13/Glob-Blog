@@ -20,12 +20,8 @@ router.get('/',  async(req,res) => {
   }
 });
 
-// get user profile
-router.get("/profile", withAuth, async (req, res) => {
-
-});
-
 //get the blogpost
+// need to get comments
 router.get("/blogpost/:id",  async(req,res) => {
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
@@ -42,7 +38,20 @@ router.get("/blogpost/:id",  async(req,res) => {
 
 // get user information
 router.get("/user/:id", withAuth, async(req,res) => {
+  try{
+    const userData = await User.findByPk(req.params.id, {
+      include: [{model: User, BlogPost, Comment}]
+    });
+    const user = userData.get({plain:true});
+    res.render("profile", {
+      user
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }   
 
+  
+  
 });
 
 // Login route
