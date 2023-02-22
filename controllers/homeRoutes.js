@@ -37,6 +37,7 @@ router.get("/blogpost/:id",  async(req,res) => {
 });
 
 // get user information
+// need to check if this is the correct user
 router.get("/user/:id", withAuth, async(req,res) => {
   try{
     const userData = await User.findByPk(req.params.id, {
@@ -49,8 +50,6 @@ router.get("/user/:id", withAuth, async(req,res) => {
   } catch (err) {
     res.status(500).json(err);
   }   
-
-  
   
 });
 
