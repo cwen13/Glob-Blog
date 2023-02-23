@@ -15,10 +15,10 @@ Comment.init (
       type: DataTypes.STRING,
       allowNull:false
     },
-    blog_id: {
+    post_id: {
       type: DataTypes.INTEGER,
       refernces: {
-	model: "blog",
+	model: "post",
 	key: "id",
 	unique: true
       }
