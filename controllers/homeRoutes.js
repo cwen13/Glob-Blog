@@ -25,7 +25,7 @@ router.get('/',  async(req,res) => {
 router.get("/blogpost/:id",  async(req,res) => {
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
-      include: [{model: User}]
+      include: [{model: User, Comment}]
     });
     const blogPost = blogPostData.get({plain:true});
     res.render("blogpost", {
@@ -38,14 +38,15 @@ router.get("/blogpost/:id",  async(req,res) => {
 
 // get user information
 // need to check if this is the correct user
-router.get("/user/:id", withAuth, async(req,res) => {
+router.get("/profile", withAuth, async(req,res) => {
   try{
     const userData = await User.findByPk(req.params.id, {
       include: [{model: User, BlogPost, Comment}]
     });
     const user = userData.get({plain:true});
     res.render("profile", {
-      user
+      ...user,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);

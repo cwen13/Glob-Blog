@@ -1,0 +1,32 @@
+[
+  {
+    "comment":"Thought full analysis",
+    "blogpost_id":2,
+    "user_id":2
+  },
+  {
+    "comment":"Territorial feasting.",
+    "blogpost_id":1,
+    "user_id":3
+  },
+  {
+    "comment":"Circumspect review of global roundness",
+    "blogpost_id":1,
+    "user_id":2
+  },
+  {
+    "comment":"Characterization of politcal pole",
+    "blogpost_id":3,
+    "user_id":1
+  },
+  {
+    "comment":"Terrible review of teh sound of glass",
+    "blogpost_id":3,
+    "user_id":2
+  },
+  {
+    "comment":"World renound artisst of purple",
+    "blogpost_id":2,
+    "user_id":1
+  }
+]
