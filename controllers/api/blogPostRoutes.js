@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { BlogPost, User } = require("../../models");
+const { Comment, BlogPost, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // get data from the blog post
@@ -33,6 +33,11 @@ router.post('/', withAuth, async (req,res) => {
 // delete a blog post
 router.delete("/:id", withAuth, async (req,res) => {
 
+
+});
+
+//comment on blog post
+router.post("/:id/comment", withAuth async (req,res) => {
 
 });
 
