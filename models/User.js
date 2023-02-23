@@ -15,6 +15,7 @@ User.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+      onDelete:"CASCADE"
     },
     name: {
       type: DataTypes.STRING,
@@ -56,3 +57,4 @@ User.init(
 );
 
 module.exports = User;
+

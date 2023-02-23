@@ -8,19 +8,29 @@ Comment.init (
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
-      allowNull: false,
+      autoIncrement: true,
+      allowNull: false
     },
     comment: {
       type: DataTypes.STRING,
       allowNull:false
     },
-    post_id: {
+    blogpost_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       refernces: {
-	model: "post",
+	model: "blogPost",
 	key: "id",
-	unique: true
+	unique: false
+      }
+    },
+    user_id:{
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      reference: {
+	model: "user",
+	key: "id",
+	unique: false
       }
     }
   },
@@ -33,4 +43,4 @@ Comment.init (
   }
 );
 
-module.exports = Product;
+module.exports = Comment;
