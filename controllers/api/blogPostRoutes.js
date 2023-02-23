@@ -37,7 +37,7 @@ router.delete("/:id", withAuth, async (req,res) => {
 });
 
 //comment on blog post
-router.post("/:id/comment", withAuth async (req,res) => {
+router.post("/:id/comment", withAuth, async (req,res) => {
 
 });
 
