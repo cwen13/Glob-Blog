@@ -9,6 +9,13 @@
 	  </section>
     </section>
   </section>
+  <section class="comment-box d-flex flex-column">
+    <label for="comment-box">Comment on this post here:</label>
+    <textarea id="comment-box" name="comment" rows="10">
+      Comment here....
+    </textarea>
+    <button class="comment-submit" style="width: 50%;" type="button"> Comment</button>
+  </section>
   {{#if comments}}
   {{#each comments as |comment|}}
   <section class="card" style="width: 100%;">
