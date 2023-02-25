@@ -22,13 +22,13 @@ router.get('/',  async(req,res) => {
 
 //get the blogpost
 // need to get comments
-router.get("/blogpost/:id",  async(req,res) => {
+router.get("/blogpost/:id", withAuth, async(req,res) => {
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
       include: [{model: User}, {model: Comment}]
     });
     const blogPost = blogPostData.get({plain:true});
-    console.log(blogPost);
+//    console.log(blogPost);
     
 //    const blogPostCommentData = await Comment.findAll({
 //      where: {
@@ -51,10 +51,15 @@ router.get("/blogpost/:id",  async(req,res) => {
 // need to check if this is the correct user
 router.get("/profile", withAuth, async(req,res) => {
   try{
-    const userData = await User.findByPk(req.params.id, {
-      include: [{model: User, BlogPost, Comment}]
+    console.log("GOMING TO THE PROFILE!");
+    console.log(req.session); 
+    const userData = await User.findByPk(req.session.user_id, {
+      include: [{model: BlogPost}, {model:Comment}],
+      attributes: {excludes:["password"]},
     });
+    console.log("uerDAra",userData);
     const user = userData.get({plain:true});
+    console.log(user);
     res.render("profile", {
       ...user,
       logged_in: true
