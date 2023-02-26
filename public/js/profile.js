@@ -1,14 +1,17 @@
-const newFormHandler = async (event) => {
+const newBlogPost = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
-
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+  const blogTitle = document.querySelector('#blogTitle').value.trim();
+  const blogPost = document.querySelector('#blogPost').value.trim();
+  const userId = document.querySelector("#user-id").dataset.id;
+  let userEntry = {title:blogTitle,
+		    user_id: userId,
+		    body: blogPost
+		   };
+  if (blogTitle && blogPost) {
+    const response = await fetch("/api/blogPosts", {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
+      body: JSON.stringify(userEntry),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -17,31 +20,36 @@ const newFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to create project');
+      alert('Failed to create blog post!');
     }
   }
 };
 
 const delButtonHandler = async (event) => {
+  event.preventDefault();
+  console.log("Pushing the button");
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/projects/${id}`, {
+    console.log(`/api/blogposts/${id}`);
+    const response = await fetch(`/api/blogposts/${id}`, {
       method: 'DELETE',
     });
 
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to delete project');
+      alert('Failed to delete blogpost');
     }
   }
 };
 
 document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+  .querySelector("#newBlogPost")
+  .addEventListener("click", newBlogPost);
 
 document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+  .querySelector("#deletePost")
+  .addEventListener("click", delButtonHandler);
+
+console.log("Profile.js loaded");

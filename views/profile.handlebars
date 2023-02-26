@@ -1,17 +1,34 @@
 
 <body>
-  <section class="top">
-    <h1>{{user.name}}</h1>
+  <section class="top d-flex justify-center">
+    <h1 data-id="{{user.id}}" id="user-id">{{user.name}}</h1>
   </section>
   <section>
     <h2>Add new blog post</h2>
-    <textarea id="blogTitle" name="title" rows="2"> Title</textarea>
-    <textarea id="blogpost" name="blogpost" rows="10">Blog post</textarea>
-    </section>
-  {{if blogposts }}
-  <section>
-    {{> blog-posts}}
+    <section class="d-flex flex-column">
+	     <textarea id="blogTitle" name="title" rows="2" class="m-1"> Title</textarea>
+	     <textarea id="blogPost" name="blogpost" rows="10">Blog post</textarea>
+	     <button id="newBlogPost" class="btn btn-secondary"  type="submit">create</button>
   </section>
-  {{#if}}
+    </section>
+  {{#if user.blogPosts }}
+  {{#each user.blogPosts as |blogPost|}}
+  <section class="card mt-2 mb-2" style="width: 100%;">
+    <section class="card-body">
+      <a href="/blogpost/{{id}}">
+	<h3 class="card-title">{{blogPost.title}}</h3>
+      </a>
+      <h5 class="card-subtitle text-muted">
+	{{format_date blogPost.date_created}}
+      </h5>
+      <p class="card-text">{{post_preview blogPost.body}}</p>
+    </section>
+    <section class="card-footer">
+      <button data-id="{{id}}"id="deletePost" clas="btn btn-warning" type="button" id="deletePost" style="color:red;" > DELETE</button>
+    </section>
+  </section>
+  {{/each}}
+  {{/if}}
 
+  <script src="/js/profile.js"></script>
 </body>
