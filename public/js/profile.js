@@ -50,7 +50,7 @@ document
   .addEventListener('click', newBlogPost);
 
 document
-  .querySelector('.project-list')
+  .querySelector("#delete-post")
   .addEventListener('click', delButtonHandler);
 
 console.log("Profile.js loaded");
