@@ -24,14 +24,15 @@ router.post('/', async (req, res) => {
 
 //    const userData = await User.create(req.body);
 //    console.log(userData);
-    
+
+    console.log("USER id:",dbUserData.id);
     // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
       res.status(200).json(dbUserData);
     });
-    
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

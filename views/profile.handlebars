@@ -1,5 +1,16 @@
 <body>
   <section class="top">
-    {{user.name}}
+    <h1>{{user.name}}</h1>
   </section>
-  </body>
+  <section>
+    <h2>Add new blog post</h2>
+    <textarea id="blogTitle" name="title" rows="2"> Title</textarea>
+    <textarea id="blogpost" name="blogpost" rows="10">Blog post</textarea>
+    </section>
+  {{if blogposts }}
+  <section>
+    {{> blog-posts}}
+  </section>
+  {{#if}}
+
+</body>
