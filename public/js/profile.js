@@ -5,14 +5,14 @@ const newBlogPost = async (event) => {
   const blogTitle = document.querySelector('#blogTitle').value.trim();
   const blogPost = document.querySelector('#blogPost').value.trim();
   const userId = document.querySelector("#user-id").dataset.id;
-  let userEntry = [{title:blogTitle,
+  let userEntry = {title:blogTitle,
 		    user_id: userId,
 		    body: blogPost
-		   }];
+		   };
 
   console.log("going to post it");
   if (blogTitle && blogPost) {
-    const response = await fetch("/api/blogposts", {
+    const response = await fetch("/api/blogPosts", {
       method: 'POST',
       body: JSON.stringify(userEntry),
       headers: {
@@ -20,10 +20,11 @@ const newBlogPost = async (event) => {
       },
     });
 
+    console.log(response.ok);
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to create project');
+      alert('Failed to create blog post!');
     }
   }
 };
