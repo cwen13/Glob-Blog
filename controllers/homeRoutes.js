@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Comment, BlogPost, User } = require("./../models");
+const { User, Comment, BlogPost } = require("./../models");
 const withAuth = require("./../utils/auth");
 
 // get the home page
@@ -56,12 +56,9 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
 router.get("/profile", withAuth, async(req,res) => {
   try{
 
-    console.log("Getting profile");
-    console.log(Object.keys(req.session));
     const userData = await User.findByPk(req.session.user_id, {
-      include: [{model: User, BlogPost}]
-    });
-    console.log("uerData:",userDAta);
+      include: [{model: BlogPost},{model: Comment}]
+    }).catch((err) => console.error(err));
 
     const user = userData.get({plain:true});
     console.log(user);

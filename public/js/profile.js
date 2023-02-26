@@ -1,14 +1,20 @@
-const newFormHandler = async (event) => {
+const newBlogPost = async (event) => {
   event.preventDefault();
+  console.log("NEW BLOG POST FUNCTOIN");
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+  const blogTitle = document.querySelector('#blogTitle').value.trim();
+  const blogPost = document.querySelector('#blogPost').value.trim();
+  const userId = document.querySelector("#user-id").dataset.id;
+  let userEntry = [{title:blogTitle,
+		    user_id: userId,
+		    body: blogPost
+		   }];
 
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+  console.log("going to post it");
+  if (blogTitle && blogPost) {
+    const response = await fetch("/api/blogposts", {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
+      body: JSON.stringify(userEntry),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,9 +45,11 @@ const delButtonHandler = async (event) => {
 };
 
 document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+  .querySelector("#newBlogPost")
+  .addEventListener('click', newBlogPost);
 
 document
   .querySelector('.project-list')
   .addEventListener('click', delButtonHandler);
+
+console.log("Profile.js loaded");

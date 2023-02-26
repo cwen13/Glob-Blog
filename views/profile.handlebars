@@ -1,17 +1,21 @@
 
 <body>
-  <section class="top">
-    <h1>{{user.name}}</h1>
+  <section class="top d-flex justify-center">
+    <h1 data-id="{{user.id}}" id="user-id">{{user.name}}</h1>
   </section>
   <section>
     <h2>Add new blog post</h2>
-    <textarea id="blogTitle" name="title" rows="2"> Title</textarea>
-    <textarea id="blogpost" name="blogpost" rows="10">Blog post</textarea>
-    </section>
-  {{if blogposts }}
-  <section>
-    {{> blog-posts}}
+    <section class="d-flex flex-column">
+	     <textarea id="blogTitle" name="title" rows="2" class="m-1"> Title</textarea>
+	     <textarea id="blogPost" name="blogpost" rows="10">Blog post</textarea>
+	     <button id="newBlogPost" class="btn btn-secondary"  type="submit">create</button>
   </section>
-  {{#if}}
+    </section>
+  {{#if blogposts }}
+  <section>
+    {{> blog-posts user.blogPosts}}
+  </section>
+  {{/if}}
 
+  <script src="/js/profile.js"></script>
 </body>
