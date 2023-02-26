@@ -27,7 +27,8 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
 
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
-      include: [{model: User}, {model: Comment}]
+      include: [{model: User}, {model: Comment}],
+      order:[[sequelize.litteral("date_created"), "DEC"]
     });
     const blogPost = blogPostData.get({plain:true});
 
