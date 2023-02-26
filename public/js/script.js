@@ -2,6 +2,7 @@
 
 const getComment = async (event) => {
   event.preventDefault();
+
   
   const comment = document.querySelector("#comment-box").value.trim();
 
@@ -19,3 +20,4 @@ const getComment = async (event) => {
     }
   }
 };
+
