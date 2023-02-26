@@ -11,10 +11,20 @@
 	     <button id="newBlogPost" class="btn btn-secondary"  type="submit">create</button>
   </section>
     </section>
-  {{#if blogposts }}
-  <section>
-    {{> blog-posts user.blogPosts}}
+  {{#if user.blogPosts }}
+  {{#each user.blogPosts as |blogPost|}}
+  <section class="card" style="width: 100%;">
+    <section class="card-body">
+      <a href="/blogpost/{{id}}">
+	<h3 class="card-title">{{blogPost.title}}</h3>
+      </a>
+      <h5 class="card-subtitle text-muted">
+	{{user.name}} - {{format_date blogPost.date_created}}
+      </h5>
+      <p class="card-text">{{blogPost.body}}</p>
+    </section>
   </section>
+  {{/each}}
   {{/if}}
 
   <script src="/js/profile.js"></script>
