@@ -1,6 +1,5 @@
 const newBlogPost = async (event) => {
   event.preventDefault();
-  console.log("NEW BLOG POST FUNCTOIN");
 
   const blogTitle = document.querySelector('#blogTitle').value.trim();
   const blogPost = document.querySelector('#blogPost').value.trim();
@@ -9,8 +8,6 @@ const newBlogPost = async (event) => {
 		    user_id: userId,
 		    body: blogPost
 		   };
-
-  console.log("going to post it");
   if (blogTitle && blogPost) {
     const response = await fetch("/api/blogPosts", {
       method: 'POST',
@@ -20,7 +17,6 @@ const newBlogPost = async (event) => {
       },
     });
 
-    console.log(response.ok);
     if (response.ok) {
       document.location.replace('/profile');
     } else {
@@ -30,28 +26,30 @@ const newBlogPost = async (event) => {
 };
 
 const delButtonHandler = async (event) => {
+  event.preventDefault();
+  console.log("Pushing the button");
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    console.log(id);
-    const response = await fetch(`/api/projects/${id}`, {
+    console.log(`/api/blogposts/${id}`);
+    const response = await fetch(`/api/blogposts/${id}`, {
       method: 'DELETE',
     });
 
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to delete project');
+      alert('Failed to delete blogpost');
     }
   }
 };
 
 document
   .querySelector("#newBlogPost")
-  .addEventListener('click', newBlogPost);
+  .addEventListener("submit", newBlogPost);
 
 document
-  .querySelector("#delete-post")
-  .addEventListener('click', delButtonHandler);
+  .querySelector("#deletePost")
+  .addEventListener("click", delButtonHandler);
 
 console.log("Profile.js loaded");

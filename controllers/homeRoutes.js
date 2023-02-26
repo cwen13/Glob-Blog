@@ -56,13 +56,11 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
 // need to check if this is the correct user
 router.get("/profile", withAuth, async(req,res) => {
   try{
-    console.log(req.session.user_id);
     const userData = await User.findByPk(req.session.user_id, {
       include: [{model: BlogPost}]
     });
 
     const user = userData.get({plain:true});
-    console.log(user);
     res.render("profile", {
       user,
       logged_in: true
