@@ -28,9 +28,7 @@ router.put("/:id", withAuth, async (req,res) => {
 router.post('/', withAuth, async (req,res) => {
   try {
 //    console.log(req.body);
-    const blogPost = await BlogPost.create(
-      req.body
-    );
+    const blogPost = await BlogPost.create(req.body);
     
     res.status(200).json(blogPost);
   } catch (err) {

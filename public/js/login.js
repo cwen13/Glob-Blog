@@ -24,26 +24,28 @@ const loginFormHandler = async (event) => {
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
-  console.log("Here one");
 
   const name = document.querySelector('#name-signup').value.trim();
-  console.log(name);//, email, password);
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
-  console.log(JSON.stringify({ name, email, password }));
-  
-  if (name && email && password) {
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert(response.statusText);
+  try {
+    if (name && email && password) {
+      const response = await fetch("/api/users", {
+	method: 'POST',
+	body: JSON.stringify({ name, email, password }),
+	headers: { 'Content-Type': 'application/json' },
+      });
+      
+      console.log("Here one");
+      if (response.ok) {
+	document.location.replace('/profile');
+      } else {
+	alert(response.statusText);
+      }
     }
+  } catch (err) {
+    console.log(err);
   }
 };
 
