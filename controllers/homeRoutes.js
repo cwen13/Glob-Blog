@@ -32,7 +32,6 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
     const blogPost = blogPostData.get({plain:true});
 
 
-    console.log(blogPost);
     res.render("blogpost", {
       ...blogPost,
     });

@@ -9,18 +9,21 @@ const getComment = async (event) => {
   const blogpost_id = URL[URL.length-1];
 
   const commentURL = (window.location.href).replace("/blogpost", "/api/blogpost")+"/comment";
+  console.log(commentURL);
   
   if (comment) {
-    const resonse = await fetch(commentURL, {
-      method:"POST",
-      body: JSON.stringify({comment, blogpost_id}),
-      headers: {"Content-Type": "application/json"},
-    });
-
-    if (response.ok) {
+    try { 
+      const response = await fetch(commentURL, {
+	method:"POST",
+	body: JSON.stringify({comment}),
+	headers: {"Content-Type": "application/json"},
+      });
+      
+      console.log("Comment");
+      console.log(response);
       document.location.reload();
-    } else {
-      alert(response.statusText);
+    } catch (err) {
+      console.log(err);
     }
   }
 };
