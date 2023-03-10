@@ -33,6 +33,3 @@
 </body>
 <script src="/js/blogPost.js"></script>
 
-Handlebars.registerHelper('compareIds', function(p, q, options) {
-    return (p == q) ? options.fn(this) : options.inverse(this);
-});
