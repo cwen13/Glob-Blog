@@ -69,8 +69,6 @@ router.post('/login', async (req, res) => {
       return;
     }
     
-    console.log(req.body);
-
     // Once the user successfully logs in, set up the sessions variable 'loggedIn'
     req.session.save(() => {
       req.session.user_id = dbUserData.id;

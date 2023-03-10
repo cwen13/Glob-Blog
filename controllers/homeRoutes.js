@@ -12,7 +12,6 @@ router.get('/',  async(req,res) => {
     const blogPosts = dbBlogPostData.map((blogpost) =>
       blogpost.get({plain: true})
     );
-//    console.log(blogPosts);
     res.render("homepage",{
        blogPosts
     });
@@ -28,24 +27,13 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
 
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
-      include: [{model: User}, {model: Comment}],
+      include: [{model: User, attributes: ["name"]}, {model: Comment,include: [{model: User}]}],
     });
     const blogPost = blogPostData.get({plain:true});
 
-//    console.log(blogPost);
-    
-//    const blogPostCommentData = await Comment.findAll({
-//      where: {
-//	blogpost_id: req.params.id
-//      }
-//    });
-//
-//    const comments = blogPostCommentData.map((comment) =>
-//      comment.get({plain:true}));
-
 
     res.render("blogpost", {
-      blogPost
+      ...blogPost,
     });
   } catch (err) {
     res.status(500).json(err);

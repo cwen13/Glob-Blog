@@ -1,5 +1,5 @@
 <body>
-  <section class="title">
+<section class="title">
     <h1><i class="bi bi-journal-text"></i> {{blogPost.title}} </h1>
     <section class="next">
       <h2><i class="bi bi-person-circle"></i> {{blogPost.user.name}} <a href="mailto:{{user.email}}">{{blogPost.user.email}}</a><h2>
@@ -9,27 +9,25 @@
 	  </section>
     </section>
   </section>
-
   <section class="comment-box d-flex flex-column">
     <label for="comment-box">Comment on this post here:</label>
     <textarea id="comment-box" name="comment" rows="5">
       Comment here....
     </textarea>
-    <button class="comment-submit" style="width: 50%;" type="button"> Comment</button>
+    <button id="comment-submit" style="width: 50%;" type="button"> Comment</button>
   </section>
-  {{#if comments}}
-  {{#each comments as |comment|}}
-
+  {{#if blogPost.comments}}
+  {{#each blogPost.comments as |comment|}}
   <section class="card" style="width: 100%;">
     <section class="card-body">
-      <a href="/blogpost/{{id}}">
-	<h3 class="card-title">{{comment.user.name}}</h3>
-	</a>
-      <p class="card-text">{{comment.comment}}</p>
+	<h3 class="card-title">USER: {{user_id}}</h3>
+      <h5 class="card-subtitle text-muted">
+	{{date_created}}
+      </h5>
+      <p class="card-text">{{comment}}</p>
     </section>
   </section>  
   {{/each}}
   {{/if}}
-
 </body>
-
+<script src="/js/blogPost.js"></script>

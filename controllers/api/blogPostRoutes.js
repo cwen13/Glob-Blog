@@ -27,7 +27,7 @@ router.put("/:id", withAuth, async (req,res) => {
 // create a new blog post
 router.post('/', withAuth, async (req,res) => {
   try {
-//    console.log(req.body);
+    console.log(req.body);
     const blogPost = await BlogPost.create(req.body);
     
     res.status(200).json(blogPost);
@@ -53,7 +53,18 @@ router.delete("/:id", withAuth, async (req,res) => {
 
 //comment on blog post
 router.post("/:id/comment", withAuth, async (req,res) => {
-
+  
+  try {
+    const blogComment = await Comment.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    })
+    
+    
+  } catch (err) {
+    console.log(err);
+  }
+  
 });
 
 module.exports = router;
