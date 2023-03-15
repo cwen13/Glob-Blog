@@ -5,9 +5,7 @@
     <h1><i class="bi bi-journal-text"></i> {{title}} </h1>
     <section class="next">
       <h2><i class="bi bi-person-circle"></i> {{user.name}} <a href="mailto:{{user.email}}">{{user.email}}</a><h2>
-	  {{#compareIds user_id user.user_id}}
 	  <button id="edit" name="edit"><i class="bi bi-pen"></i> Edit</button>
-	    {{/compareIds}}
 	  <section class="content">
 	    <p> {{body}}</p>
 	  </section>
@@ -33,6 +31,3 @@
 </body>
 <script src="/js/blogPost.js"></script>
 
-Handlebars.registerHelper('compareIds', function(p, q, options) {
-    return (p == q) ? options.fn(this) : options.inverse(this);
-});

@@ -28,5 +28,9 @@ const getComment = async (event) => {
   }
 };
 
+const editPost = async (event) => {
+
+}
+
 document.querySelector("#comment-submit").addEventListener("click", getComment);
 
