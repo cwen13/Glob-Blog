@@ -1,14 +1,34 @@
 
-
 <body>
-<section class="title">
+<section class="title" >
     <h1><i class="bi bi-journal-text"></i> {{title}} </h1>
     <section class="next">
       <h2><i class="bi bi-person-circle"></i> {{user.name}} <a href="mailto:{{user.email}}">{{user.email}}</a><h2>
-	  <button id="edit" name="edit"><i class="bi bi-pen"></i> Edit</button>
 	  <section class="content">
-	    <p> {{body}}</p>
-	  </section>
+	    {{#if edit }}
+	    <textarea
+	      id="blogPost"
+	      data-author-id="{{user.id}}"
+	      data-current-user="{{user_id}}"
+	      data-blogpost-id="{{id}}"
+	      >
+	      {{else}}
+	      <p>
+		{{/if}}
+		
+		{{body}}
+		
+	    {{#if edit }}
+	      </textarea>
+	    {{else}}
+	      </p>
+	      {{/if}}
+	     
+</section>
+{{#if edit}}
+<button id="edit-submit" name="edit"><i class="bi bi-pen"></i> Edit</button>
+{{/if}}
+
     </section>
   </section>
   <section class="comment-box d-flex flex-column">

@@ -27,7 +27,6 @@ const newBlogPost = async (event) => {
 
 const delButtonHandler = async (event) => {
   event.preventDefault();
-  console.log("Pushing the button");
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
@@ -44,6 +43,8 @@ const delButtonHandler = async (event) => {
   }
 };
 
+
+
 document
   .querySelector("#newBlogPost")
   .addEventListener("click", newBlogPost);
@@ -51,5 +52,10 @@ document
 document
   .querySelector("#deletePost")
   .addEventListener("click", delButtonHandler);
+
+document
+  .querySelector("#editPost")
+  .addEventListener("click", editPostHandler);
+
 
 console.log("Profile.js loaded");

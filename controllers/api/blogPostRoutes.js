@@ -5,24 +5,16 @@ const withAuth = require("../../utils/auth");
 // get data from the blog post
 router.get('/', async (req, res) => {
   try {
+    console.log("here 0");
     const blogPostData = await BlogPost.findAll({
       include: [{model: User}]
     });
+    console.log("Here 1");
     res.status(200).json(blogPostData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-// edit a post's data
-router.put("/:id", withAuth, async (req,res) => {
-  try{
-
-  } catch (err) {
-    res.status(500).json(err);
-  }    
-});
-
 
 // create a new blog post
 router.post('/', withAuth, async (req,res) => {
@@ -36,6 +28,20 @@ router.post('/', withAuth, async (req,res) => {
   }
 
 });
+
+
+// edit a post's data
+router.put("/:id", withAuth, async (req,res) => {
+  try{
+    const blogPostData = req.body.body
+
+    res.status(200).json(blogPostData);
+  } catch (err) {
+    res.status(500).json(err);
+  }    
+});
+
+
 
 // delete a blog post
 router.delete("/:id", withAuth, async (req,res) => {
@@ -66,6 +72,23 @@ router.post("/:id/comment", withAuth, async (req,res) => {
     res.status(400).json(err);
   }
   
+});
+
+router.put("/:id/edit" ,withAuth, async (req,res) => {
+  try {
+    console.log(req.body.body);
+    const blogEdit = await BlogPost.update(
+      {body: req.body.body},
+      {where: {
+	id: req.params.id
+      }
+    })          
+
+   
+    res.status(200).json(blogEdit);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 // need to grab comment data and input into the db
 
+
 const getComment = async (event) => {
   event.preventDefault();
 
@@ -18,9 +19,6 @@ const getComment = async (event) => {
 	body: JSON.stringify({comment}),
 	headers: {"Content-Type": "application/json"},
       });
-      
-      console.log("Comment");
-      console.log(response);
       document.location.reload();
     } catch (err) {
       console.log(err);
@@ -28,9 +26,34 @@ const getComment = async (event) => {
   }
 };
 
-const editPost = async (event) => {
+const getEditHandler= async (event) => {
 
-}
+  let editURL = (window.location.href).replace("/blogpost", "/api/blogpost");
+  let body = document.querySelector("#blogPost").value.trim();
+  console.log(body);
+  
+  try {
+    const blogpostEdit = await fetch(editURL, {
+      method:"PUT",
+      body:JSON.stringify({body}),
+      headers: {"Content-Type": "application/json"}
+    });
+    let blogpostURL = editURL.replace("/api/blogpost","/blogpost").replace("/edit","");
+//    if (blogpostEdit.ok) {
+//      document.location = blogpostURL;
+//    } else{
+//      console.log("Did not get put");
+//    }
+    console.log(blogpostEdit);
+    
+  } catch (err) {
+    console.log(err);
+  }
+  
+};
+
 
 document.querySelector("#comment-submit").addEventListener("click", getComment);
-
+if (document.querySelector("#edit-submit")) {
+  document.querySelector("#edit-submit").addEventListener("click", getEditHandler);
+}

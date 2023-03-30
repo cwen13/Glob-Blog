@@ -22,9 +22,9 @@
       <nav>
 	<a href="/"> Homepage</a>
         <!-- Conditionally render login or logout links -->
-        {{#if req.session.loggedIn}}
-        <a href="/profile">dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
+        {{#if loggedIn}}
+        <a href="/profile" id="profile">profile</a>
+	<button class="btn no-btn" id="logout">logout</button>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
@@ -40,7 +40,7 @@
   </div>
 
   <!-- Render script for logged in users only -->
-  {{#if logged_in}}
+  {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
