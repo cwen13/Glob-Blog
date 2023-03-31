@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
+// hbs.registerHelper('compareIds', function(p, q, options) {
+//    return (p == q) ? options.fn(this) : options.inverse(this);
+//});
+
 
 const sess = {
   secret: process.env.SECRET,

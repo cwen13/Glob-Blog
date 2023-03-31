@@ -16,13 +16,15 @@ router.get('/', async (req,res) => {
 // CREATE new user
 router.post('/', async (req, res) => {
   try {
-
+    console.log("Here two");
     const dbUserData = await User.create({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
     });
 
+    console.log(dbUserData);
+    
 //    const userData = await User.create(req.body);
 //    console.log(userData);
 
@@ -50,6 +52,8 @@ router.post('/login', async (req, res) => {
       },
     });
 
+    console.log(dbUserData);
+
     if (!dbUserData) {
       res
         .status(400)
@@ -64,7 +68,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
+    
     // Once the user successfully logs in, set up the sessions variable 'loggedIn'
     req.session.save(() => {
       req.session.user_id = dbUserData.id;

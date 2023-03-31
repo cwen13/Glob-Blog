@@ -24,7 +24,8 @@
       <p class="card-text">{{post_preview blogPost.body}}</p>
     </section>
     <section class="card-footer">
-      <button data-id="{{id}}"id="deletePost" clas="btn btn-warning" type="button" id="deletePost" style="color:red;" > DELETE</button>
+      <button data-id="{{id}}"id="deletePost" clas="btn btn-warning" type="button" id="deletePost" style="color:red;"> DELETE</button>
+      <a href="/blogpost/{{id}}/edit" id="editPost" clas="btn btn-warning border" id="editPost" style="color:red;"> EDIT</button>
     </section>
   </section>
   {{/each}}

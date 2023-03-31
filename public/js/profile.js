@@ -9,7 +9,7 @@ const newBlogPost = async (event) => {
 		    body: blogPost
 		   };
   if (blogTitle && blogPost) {
-    const response = await fetch("/api/blogPosts", {
+    const response = await fetch("/api/blogPost", {
       method: 'POST',
       body: JSON.stringify(userEntry),
       headers: {
@@ -27,12 +27,11 @@ const newBlogPost = async (event) => {
 
 const delButtonHandler = async (event) => {
   event.preventDefault();
-  console.log("Pushing the button");
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    console.log(`/api/blogposts/${id}`);
-    const response = await fetch(`/api/blogposts/${id}`, {
+    console.log(`/api/blogpost/${id}`);
+    const response = await fetch(`/api/blogpost/${id}`, {
       method: 'DELETE',
     });
 
@@ -44,6 +43,8 @@ const delButtonHandler = async (event) => {
   }
 };
 
+
+
 document
   .querySelector("#newBlogPost")
   .addEventListener("click", newBlogPost);
@@ -51,5 +52,10 @@ document
 document
   .querySelector("#deletePost")
   .addEventListener("click", delButtonHandler);
+
+document
+  .querySelector("#editPost")
+  .addEventListener("click", editPostHandler);
+
 
 console.log("Profile.js loaded");

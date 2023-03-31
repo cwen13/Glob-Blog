@@ -11,6 +11,6 @@ const logout = async () => {
   }
 };
 
+
 document.querySelector('#logout').addEventListener('click', logout);
 
-console.log("LGOUT SCRIPT");
