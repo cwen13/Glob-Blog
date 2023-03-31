@@ -30,7 +30,6 @@ const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    console.log(`/api/blogpost/${id}`);
     const response = await fetch(`/api/blogpost/${id}`, {
       method: 'DELETE',
     });
@@ -57,5 +56,3 @@ document
   .querySelector("#editPost")
   .addEventListener("click", editPostHandler);
 
-
-console.log("Profile.js loaded");
