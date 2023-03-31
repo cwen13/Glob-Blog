@@ -12,8 +12,10 @@ router.get('/',  async(req,res) => {
     const blogPosts = dbBlogPostData.map((blogpost) =>
       blogpost.get({plain: true})
     );
+    const loggedIn = req.session.loggedIn;
     
     res.render("homepage",{
+      loggedIn,
        blogPosts
     });
   } catch (err) {
