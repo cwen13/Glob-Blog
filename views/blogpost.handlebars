@@ -15,15 +15,12 @@
 	      {{else}}
 	      <p>
 		{{/if}}
-		
 		{{body}}
-		
 	    {{#if edit }}
 	      </textarea>
 	    {{else}}
 	      </p>
 	      {{/if}}
-	     
 </section>
 {{#if edit}}
 <button id="edit-submit" name="edit"><i class="bi bi-pen"></i> Edit</button>
@@ -42,7 +39,7 @@
   {{#each comments as |comment|}}
   <section class="card" style="width: 100%;">
     <section class="card-body">
-	<h3 class="card-title">USER: {{comment.user.name}}</h3>
+      <h3 class="card-title">USER: {{comment.user.name}} ({{comment.user.date_created}})</h3>
       <p class="card-subtitle text-muted card-text">{{comment.comment}}</p>
     </section>
   </section>  

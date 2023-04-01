@@ -51,10 +51,14 @@ router.get("/blogpost/:id", withAuth, async(req,res) => {
 
   try{
     const blogPostData = await BlogPost.findByPk(req.params.id, {
-      include: [{model: User, attributes: ["id","name","email"]}, {model: Comment,include: [{model: User}]}],
+      include: [{model: User, attributes: ["id","name","email"]},
+		{model: Comment,include: [{model: User}]}],
     });
+
     const blogPost = blogPostData.get({plain:true});
 
+    //console.log(blogPostData["comments"][0]["date_created"]);
+    
     const loggedIn = req.session.loggedIn;
     let edit = false;
     

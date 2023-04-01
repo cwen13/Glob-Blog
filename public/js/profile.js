@@ -30,13 +30,12 @@ const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    console.log(`/api/blogpost/${id}`);
     const response = await fetch(`/api/blogpost/${id}`, {
       method: 'DELETE',
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.reload();
     } else {
       alert('Failed to delete blogpost');
     }
@@ -53,9 +52,4 @@ document
   .querySelector("#deletePost")
   .addEventListener("click", delButtonHandler);
 
-document
-  .querySelector("#editPost")
-  .addEventListener("click", editPostHandler);
 
-
-console.log("Profile.js loaded");

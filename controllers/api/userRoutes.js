@@ -23,18 +23,11 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
-    console.log(dbUserData);
-    
-//    const userData = await User.create(req.body);
-//    console.log(userData);
-
-    console.log("USER id:",dbUserData.id);
     // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.logged_in = true;
       res.status(200).json(dbUserData);
-
     });
 
   } catch (err) {
@@ -51,8 +44,6 @@ router.post('/login', async (req, res) => {
         email: req.body.email,
       },
     });
-
-    console.log(dbUserData);
 
     if (!dbUserData) {
       res
@@ -74,8 +65,7 @@ router.post('/login', async (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.loggedIn = true;
 
-      res
-        .status(200)
+      res.status(200)
         .json({ user: dbUserData, message: 'You are now logged in!' });
     });
   } catch (err) {
@@ -87,7 +77,6 @@ router.post('/login', async (req, res) => {
 // Logout
 router.post('/logout', (req, res) => {
   // When the user logs out, destroy the session
-  console.log("HERE");
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
