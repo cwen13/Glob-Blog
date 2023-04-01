@@ -35,7 +35,7 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.reload();
     } else {
       alert('Failed to delete blogpost');
     }
@@ -52,7 +52,4 @@ document
   .querySelector("#deletePost")
   .addEventListener("click", delButtonHandler);
 
-document
-  .querySelector("#editPost")
-  .addEventListener("click", editPostHandler);
 

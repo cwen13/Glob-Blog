@@ -35,7 +35,8 @@ const getEditHandler= async (event) => {
       body:JSON.stringify({body}),
       headers: {"Content-Type": "application/json"}
     });
-    let blogpostURL = editURL.replace("/api/blogpost","/blogpost").replace("/edit","");
+    let blogpostURL = editURL.replace("/api/blogpost","/blogpost").replace("/edit","").trim();
+    document.location.replace(blogpostURL);
     
   } catch (err) {
     console.log(err);
